@@ -6,17 +6,7 @@ import userEvent from '@testing-library/user-event';
 
 
 describe('App', () => {
-   // *************** 7) SingleComment all’interno del DOM *******************************************************
-
-   it(' istanze del componente SingleComment al interno del DOM', async () => {
-    render(<App/>)
-    
-    const comments = await screen.queryAllByTestId("comment");
-    
-    expect(comments).toHaveLength(0);
    
-    
-  })
 
 // **************************************1) welcome alert*****************************************************
 
@@ -101,6 +91,18 @@ describe('App', () => {
     
   })
 
+  // *************** 7) SingleComment all’interno del DOM *******************************************************
+
+  it(' istanze del componente SingleComment al interno del DOM', async () => {
+    render(<App/>)
+    
+    const comments = await screen.queryAllByTestId("comment");
+    
+    expect(comments).toHaveLength(0);
+   
+    
+  })
+
 
   // // *************** 8) recensioni all’interno del DOM *******************************************************
 
@@ -110,9 +112,9 @@ describe('App', () => {
     fireEvent.click(libri[1]);
     const comments = await screen.findAllByTestId("comment");
     
-    expect(comments[0]).toBeInTheDOM();
+    expect(comments[0]).toBeInTheDocument();
    
-    
+    // .toBeInTheDOM or .toBeInTheDocument ?? stdout??
   })
  
 })
