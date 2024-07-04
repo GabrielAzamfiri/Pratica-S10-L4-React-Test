@@ -6,6 +6,17 @@ import userEvent from '@testing-library/user-event';
 
 
 describe('App', () => {
+   // *************** 7) SingleComment all’interno del DOM *******************************************************
+
+   it(' istanze del componente SingleComment al interno del DOM', async () => {
+    render(<App/>)
+    
+    const comments = await screen.queryAllByTestId("comment");
+    
+    expect(comments).toHaveLength(0);
+   
+    
+  })
 
 // **************************************1) welcome alert*****************************************************
 
@@ -79,7 +90,7 @@ describe('App', () => {
   })
   // ************************************6) clicca su un altro libro*******************************************************
 
-  it(' cliccando su un libro, il suo bordo cambi colore', async () => {
+  it(' cliccando su un altro libro, toggle del bg color e bordo', async () => {
     render(<App/>)
     const libri = await screen.findAllByRole("card");
     fireEvent.click(libri[1]);
@@ -89,4 +100,19 @@ describe('App', () => {
     expect(libri[0]).not.toHaveClass('bg-black');
     
   })
+
+
+  // // *************** 8) recensioni all’interno del DOM *******************************************************
+
+  it(' recensioni caricate correttamente all’interno del DOM', async () => {
+    render(<App/>)
+    const libri = await screen.findAllByRole("card");
+    fireEvent.click(libri[1]);
+    const comments = await screen.findAllByTestId("comment");
+    
+    expect(comments[0]).toBeInTheDOM();
+   
+    
+  })
+ 
 })

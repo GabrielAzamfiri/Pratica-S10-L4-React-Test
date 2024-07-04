@@ -29,7 +29,7 @@ const SingleComment =(props)=> {
   };
 
     return (
-      <div className="border border-info ">
+      <div data-testid="comment" className="border border-info ">
         <p>
           <strong>Comment:</strong> {props.comment.comment}
         </p>
